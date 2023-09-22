@@ -1,5 +1,4 @@
 const canvas = document.getElementById("canvas");
-let points = document.getElementById("points");
 let result = document.getElementById("result");
 const pincel = canvas.getContext("2d");
 document.body.addEventListener("keydown", (key) => {
@@ -14,7 +13,6 @@ class Snake {
       (this.directionX = 20),
       (this.directionY = 0),
       (this.win = false),
-      (this.point = 0),
       (this.tail = [{ x: this.x, y: this.y }]);
   }
   direction() {
@@ -123,10 +121,8 @@ function colision() {
   }
 }
 function update() {
-  drawRect(0, 0, 600, "white");
+  drawRect(0, 0, 600, "black");
   if (snake.x == fruit.x && snake.y == fruit.y) {
-    snake.point += 10;
-    points.innerText = snake.point;
     fruit.eat = true;
     fruit.changePosition();
     snake.addTail();
@@ -139,8 +135,8 @@ function update() {
 function draw() {
   drawRect(fruit.x, fruit.y, fruit.size, "red");
   for (var i = 0; i < snake.tail.length; i++) {
-    drawRect(snake.tail[i].x, snake.tail[i].y, snake.size, "white");
-    drawRect(snake.tail[i].x + 1, snake.tail[i].y + 1, snake.size - 2, "black");
+    drawRect(snake.tail[i].x, snake.tail[i].y, snake.size, "black");
+    drawRect(snake.tail[i].x + 1, snake.tail[i].y + 1, snake.size - 2, "white");
   }
   snake.direction();
   snake.snakeTail();
@@ -150,13 +146,13 @@ function game() {
   update();
   draw();
   if (snake.win) {
-    result.innerText = "Game Over: ";
+    result.innerText = "Game Over";
     clearInterval(interval);
   }
 }
 
 function gameLoop() {
-  pincel.fillStyle = "white";
+  pincel.fillStyle = "black";
   pincel.fillRect(0, 0, 600, 600);
   interval = setInterval(game, 1000 / 15);
 }
