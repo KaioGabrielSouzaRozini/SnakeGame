@@ -1,0 +1,14 @@
+.div-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.div-points {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+.canvas {
+  border: 4px solid blue;
+}
